@@ -14,4 +14,11 @@ public class labAPIs {
 	public static String sayHi(String name) {
 		return "Hello, " + name + "!";
 	}
+	
+	public static String toIntString(double v) {
+		Double d = v;
+		d.intValue();
+		
+		return d.intValue() + "";
+	}
 }

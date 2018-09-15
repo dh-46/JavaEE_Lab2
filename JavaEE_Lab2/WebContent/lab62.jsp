@@ -40,7 +40,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>lab62</title>
+<title>lab62_0915AM2 & PM1</title>
 </head>
 <body>
 	<h2>EL物件操作</h2>
@@ -69,6 +69,13 @@
 	Lottery: <%= labAPIs.lottery() %><br>
 	Lottery: ${labAPIs.lottery()}<br>
 	SayHi: ${labAPIs.sayHi("John") }<br>
-	SayHi: ${labAPIs.sayHi(param.name) }
+	SayHi: ${labAPIs.sayHi(param.name) }<br>
+	
+	<hr>
+	
+	${10+3 }<br>
+	字串比較: ${param.x } > ${param.y} ${param.x > param.y } <br>
+	數字比較(輸入參數x 與常數3比較): ${param.x > 3 }<br>
+	字串比較(輸入參數x 與字串10做三元運算比較): ${ (param.x == "10")? "Yes":"No" }<br>
 </body>
 </html>
