@@ -1,0 +1,40 @@
+<head>
+<meta charset="UTF-8">
+</head>
+<h2>20180909AM1_認識網頁Cookies</h2>
+
+<script>
+	function getAllCookies() {
+		var decodeCookie = decodeURIComponent(document.cookie);
+		document.write(decodeCookie + "<hr>");
+
+		var cookieArray = decodeCookie.split(";");
+
+		for (var i = 0; i < cookieArray.length; i++) {
+			var cookie = cookieArray[i];
+			document.write(cookie + "<br>");
+		}
+	}
+
+	function getCookie(key) {
+		var decodeCookie = decodeURIComponent(document.cookie);
+		
+		var cookieArray = decodeCookie.split(";");
+		var value = "";
+		for (var i = 0; i < cookieArray.length; i++) {
+			var cookie = cookieArray[i];
+			var row = cookie.split("=");
+			
+			if (row[0].trim() == key) {
+				value=row[1];
+				break;
+			}
+		
+		}
+		return value;
+	}
+
+	getAllCookies();
+	document.write("<hr>");
+	document.write(getCookie("account"));
+</script>

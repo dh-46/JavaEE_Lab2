@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>檔案上傳</title>
+</head>
+<body>
+	<h3>檔案上傳(to Lab11.servlet)</h3>
+	<h4>20180902PM2</h4>
+	<p>
+		檔案上傳都要使用POST，而且要在form中指定編碼方式(enctype)。
+		<br>檔案用的是multipart/form-data，會將檔案切割後傳至後端。
+	</p>
+	<hr>
+	<form action="Lab11" method="post" enctype="multipart/form-data">
+		<input type="file" name="upload">
+		<input type="submit" value="UPLOAD">
+	</form>
+</body>
+</html>
