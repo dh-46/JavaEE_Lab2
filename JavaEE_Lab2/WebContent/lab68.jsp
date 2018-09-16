@@ -12,7 +12,7 @@
 </head>
 <body>
 	
-	<!-- 替代Class.forName; driver可省略 -->
+	<!-- 替代Class.forName; driver第一次不能省略(伺服器啟動後載入, 後續可不用再載入一次) -->
 	<sql:setDataSource driver="com.mysql.jdbc.Driver" 
 		url="jdbc:mysql://localhost/iii" user="root" password="root"/>
 	
@@ -36,7 +36,7 @@
 	-->
 	<h2>Lab68_JSP+JDBC</h2>
 	<hr>
-	<a href='lab68.jsp?page=${(param.page <= 0)? 1 :param.page - 1 }'>上一頁</a> ${param.page == null? 1 : param.page } <a href='lab68.jsp?page=${param.page == null? param.page + 2 : param.page + 1 }'>下一頁</a>
+	<a href='lab68.jsp?page=${(param.page <= -1)? 1 :param.page - 1 }'>上一頁</a> ${param.page == null? 1 : param.page } <a href='lab68.jsp?page=${param.page == null? param.page + 2 : param.page + 1 }'>下一頁</a>
 	
 	<table border="1" width="100%">
 		<tr>
@@ -54,8 +54,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	
 	
 </body>
 </html>
