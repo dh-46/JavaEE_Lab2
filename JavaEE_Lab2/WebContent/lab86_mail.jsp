@@ -17,8 +17,8 @@
 <body>
 <%
 	// 運用Google發信
-	final String username="danielhuang.work@gmail.com";
-	final String password="Hsuan4028";
+	final String username="xxx@gmail.com";
+	final String password="xxxxxx";
 	
 	Properties props = new Properties();
 	//	props.put("mail.smtp.auth", "true");
@@ -47,13 +47,13 @@
 		//	**mime can send mails with files (newer)
 		Message message = new MimeMessage(sessionMail);
 		//	Addreass => send from?
-		message.setFrom(new InternetAddress("danielhuang.work@gmail.com"));
+		message.setFrom(new InternetAddress("sender@gmail.com"));
 		//	send to one person / Addreass => who do you want to send?
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress("air4028@gmail.com"));
+		message.setRecipient(Message.RecipientType.TO, new InternetAddress("receiver@gmail.com"));
 		//	mail text
 		message.setText("Hello!\n");
 		//	mail subject
-		message.setSubject("Hello from DH");
+		message.setSubject("Hello from sender");
 		
 		Transport.send(message);
 		out.println("send OK");
