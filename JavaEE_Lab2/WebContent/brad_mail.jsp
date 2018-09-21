@@ -16,8 +16,8 @@
 </head>
 <body>
 <%
-	final String username = "brad@brad.tw";
-	final String passwd = "fw740893";
+	final String username = "xxx@brad.tw";
+	final String passwd = "";
 	
 	Properties props = new Properties();
 	props.put("mail.smtp.auth", "true");
@@ -34,9 +34,9 @@
 	
 	try{
 		Message message = new MimeMessage(session2);
-		message.setFrom(new InternetAddress("brad@brad.tw"));
+		message.setFrom(new InternetAddress("xxx@brad.tw"));
 		message.setRecipient(Message.RecipientType.TO, 
-				new InternetAddress("seanhhe@gmail.com"));
+				new InternetAddress("xxxx@gmail.com"));
 		message.setText("1234567\n7654321\nabcdefg");
 		message.setSubject("Hello from Brad");
 		Transport.send(message);
