@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>2.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>mytags</short-name>
+	<description>
+		This tag library contains several tag extensions
+		useful for formatting content for HTML.
+	</description>
+	<tag>
+		<name>HelloDH</name>
+		<tag-class>tw.org.iii.javaee.MyTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>HelloDH2</name>
+		<tag-class>tw.org.iii.javaee.MyTag2</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+	<tag>
+		<name>tag3</name>
+		<tag-class>tw.org.iii.javaee.MyTag3</tag-class>
+		<body-content>scriptless</body-content>
+		<!-- body can be empty / JSP / scriptless -->
+		<attribute>
+			<name>price</name>
+		</attribute>
+		<attribute>
+			<name>itemName</name>
+		</attribute>
+	</tag>
+</taglib>
