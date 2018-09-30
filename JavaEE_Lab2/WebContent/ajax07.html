@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax07_0930PM1</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+			console.log("debug1");
+		} else {
+			// code for old IE browsers
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log("debug2");
+		}
+
+		if (xmlhttp == null) {
+			console.log("Not support");
+		} else {
+			console.log("Support");
+		}
+		
+		
+		//	click button trigger this
+		function test1() {
+			var table = document.getElementById('table1');
+			//	review JS <for in>
+			/* for (var v in table) {
+				console.log(v + ":" + table[v]);
+			} */
+			
+			var tc = table.children;
+			for (var vv in tc) {
+				console.log(vv + " : " + tc[vv]);
+				for (var vvv in vv) {
+					console.log(vvv + " : " + vv[vvv]);
+				}
+			}
+		}
+		
+		//	add a row
+		function addRow() {
+			// review == https://www.w3schools.com/jsref/met_table_insertrow.asp
+			
+			var table = document.getElementById('table1');
+			var row = table.insertRow(-1);
+			
+			for (var i=0; i<3; i++) {
+				var cell = row.insertCell(i);
+				cell.innerHTML = "XX" + i;
+			}
+			
+		}
+		
+		function addRowv2() {
+			// review == https://www.w3schools.com/jsref/met_table_insertrow.asp
+			
+			var table = document.getElementById('table1');
+			var row = table.insertRow(-1);
+			
+			for (var i=0; i<3; i++) {
+				var cell = row.insertCell(i);
+				console.log(xmlhttp.responseText);
+				cell.innerHTML = parseData()[i];
+			}
+			
+		}
+		
+		//	發送XMLRequest要資料
+		function getData(){
+			var url = "ajax08.jsp";
+			xmlhttp.open('GET', url, true);
+			xmlhttp.onreadystatechange = function() {
+				var state = xmlhttp.readyState;
+				var status = xmlhttp.status;
+				if (status == 200 && state == 4) {
+					//	if connection ok then do this
+					addRowv2();
+				}
+			};
+			xmlhttp.send();
+		}
+		
+		function parseData() {
+			//	解析rowdata (trim->去掉空白)
+			var response = xmlhttp.responseText.trim();
+			//	split切割資料後回傳陣列
+			var data = response.split(',');
+			
+			//	把data傳出
+			return data;
+		}
+		
+	</script>
+	<h2>Ajax07_0930PM1</h2>
+	<button onclick="test1()">Click</button>
+	<button onclick="getData()">Add a Row</button>
+	<hr>
+	<table border="1" width="100%" id="table1">
+		<tr>
+			<th>Field1</th>
+			<th>Field2</th>
+			<th>Field3</th>
+		</tr>
+		<tr>
+			<td>Data1</td>
+			<td>Data2</td>
+			<td>Data3</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

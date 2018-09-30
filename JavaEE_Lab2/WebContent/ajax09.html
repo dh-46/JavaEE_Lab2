@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax09_0930PM1</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+			console.log("debug1");
+		} else {
+			// code for old IE browsers
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log("debug2");
+		}
+
+		if (xmlhttp == null) {
+			console.log("Not support");
+		} else {
+			console.log("Support");
+		}
+		
+		function test1() {
+			var state = xmlhttp.readyState;
+			var status = xmlhttp.status;
+			var table = document.getElementById('table1');
+			
+			var url = "books.xml";
+			xmlhttp.open('GET', url, true);
+			xmlhttp.onreadystatechange = function() {
+				if (status == 200 && state == 4) {
+					//	拿到XML資料並開始解析
+					var xml = xmlhttp.responseXML;
+					var books = xml.getElementsByTagName('book');
+					
+					for (var i=0; i<books.length;i++) {
+						var book = books[i];
+						
+						//	title也有可能是多筆資料 (陣列)
+						var titleObj = book.getElementsByTagName('title');
+						//	取出價格
+						var priceObj = book.getElementsByTagName('price');
+						//	取出作者(作者只有一個, 但內容的name標籤有多個)
+						var authorsObj = book.getElementsByTagName('authors');
+						
+						//	取得元素中的innerHTML
+						//	console.log("title = " + titleObj[0].innerHTML);
+						//	console.log("price = " + priceObj[0].innerHTML);
+						
+						var title = titleObj[0].innerHTML;
+						var price = priceObj[0].innerHTML;
+						var author = authorsObj[0];
+						var names = author.getElementsByTagName('name');
+						
+						for (var j=0; j<names.length;j++){
+							var name = names[j].innerHTML;
+							//console.log(name);
+							
+							var tr = table.insertRow(-1);
+							if (j == 0 ) {
+								var tdTitle = tr.insertCell(0);
+								tdTitle.rowSpan = names.length;
+								tdTitle.innerHTML = title;
+								
+								var tdName = tr.insertCell(1);
+								tdName.innerHTML = name;
+								
+								var tdPrice = tr.insertCell(2);
+								tdPrice.rowSpan = names.length;
+								tdPrice.innerHTML = price;
+							} else {
+								var tdName = tr.insertCell(0);
+								tdName.innerHTML = name;
+							}
+						}
+						
+						
+					}
+					
+					
+				}
+			}
+			xmlhttp.send();
+		}
+		
+	</script>
+	<h2>Ajax09_0930PM1(XML file)</h2>
+	<button onclick="test1()">Click</button>
+	<hr>
+	<table border="1" width="100%" id="table1">
+		<tr>
+			<th>書名</th>
+			<th>作者</th>
+			<th>售價</th>
+		</tr>
+		<tr>
+			<td rowspan="2">Book1</td>
+			<td>John1</td>
+			<td rowspan="2">$250</td>
+		</tr>
+		<tr>
+			<td>John2</td>
+		</tr>
+		<tr>
+			<td rowspan="3">Book2</td>
+			<td>John1</td>
+			<td rowspan="3">$550</td>
+		</tr>
+		<tr>
+			<td>John2</td>
+		</tr>
+		<tr>
+			<td>John3</td>
+		</tr>
+	</table>
+
+</body>
+</html>

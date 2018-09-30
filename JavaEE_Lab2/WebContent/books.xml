@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<title>Book1</title>
+		<authors>
+			<name>John</name>
+			<name>Mary</name>
+		</authors>
+		<price>$100</price>
+	</book>
+	<book>
+		<title>Book2</title>
+		<authors>
+			<name>William</name>
+			<name>Kevin</name>
+			<name>Mina</name>
+		</authors>
+		<price>$150</price>
+	</book>
+</books>
+
+<!-- xml: 以標籤表達有意義的資料, 是嚴謹的格式. 格式嚴謹耗費較多空間, 所以近幾年JSON略勝?	 -->
