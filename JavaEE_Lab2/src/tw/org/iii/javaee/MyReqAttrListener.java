@@ -10,7 +10,8 @@ import javax.servlet.annotation.WebListener;
  * 	
  */
 
-@WebListener
+//	干擾0930AM1 先註解
+//	@WebListener
 public class MyReqAttrListener implements ServletRequestAttributeListener{
 
 	@Override

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lab96_Ajax03</title>
+</head>
+<body>
+	<h2>Ajax03_Get</h2>
+	<hr>
+	<script type="text/javascript">
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+			console.log("debug1");
+		} else {
+			// code for old IE browsers
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log("debug2");
+		}
+
+		if (xmlhttp == null) {
+			console.log("Not support");
+		} else {
+			console.log("Support");
+		}
+
+		/*目前的ready state*/
+		//	alert('now: ' + xmlhttp.readyState);
+		function cal() {
+			var x = document.getElementById('x').value;
+			var y = document.getElementById('y').value;
+			// console.log(x + y);
+
+			var url = "ajax04.jsp?x=" + x + "&y=" + y;
+			xmlhttp.open('GET', url, true);
+			xmlhttp.onreadystatechange = function() {
+				var state = xmlhttp.readyState;
+				var status = xmlhttp.status;
+				if (status == 200 && state == 4) {
+					document.getElementById('result').innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.send();
+		}
+	</script>
+
+	<input type="text" id="x"> +
+	<input type="text" id="y">
+	<input type="button" onclick="cal()" value="=">
+	<span id="result"></span>
+</body>
+</html>

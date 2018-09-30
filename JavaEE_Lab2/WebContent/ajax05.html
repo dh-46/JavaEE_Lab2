@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax05_0930AM2</title>
+</head>
+<body>
+	<h2>Ajax05_Post</h2>
+	<hr>
+	<script type="text/javascript">
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+			console.log("debug1");
+		} else {
+			// code for old IE browsers
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log("debug2");
+		}
+
+		if (xmlhttp == null) {
+			console.log("Not support");
+		} else {
+			console.log("Support");
+		}
+
+		function cal() {
+			var x = document.getElementById('x').value;
+			var y = document.getElementById('y').value;
+			
+			//	POST			
+			var url = "ajax06.jsp";
+			xmlhttp.open('POST', url, true);
+			
+			xmlhttp.onreadystatechange = function() {
+				var state = xmlhttp.readyState;
+				var status = xmlhttp.status;
+				if (status == 200 && state == 4) {
+					document.getElementById('result').innerHTML = xmlhttp.responseText;
+				}
+			};
+			
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("x=" + x + "&y=" + y);
+		}
+	</script>
+
+	<input type="text" id="x"> +
+	<input type="text" id="y">
+	<input type="button" onclick="cal()" value="=">
+	<span id="result"></span>
+</body>
+</html>
