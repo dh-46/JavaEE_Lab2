@@ -86,9 +86,28 @@
 			xmlhttp.send();
 		}
 		
+		
+		//	PM2: 後端改以文字內容傳送 (網頁的內容完全交給後端產出)
+		function test2() {
+			var state = xmlhttp.readyState;
+			var status = xmlhttp.status;
+			var table = document.getElementById('table1');
+			
+			var url = "ajax10.jsp";
+			xmlhttp.open('GET', url, true);
+			xmlhttp.onreadystatechange = function() {
+				if (status == 200 && state == 4) {
+					//	拿到XML資料並開始解析
+					var data = xmlhttp.responseText;
+					table.innerHTML = data;
+					}
+			}
+			xmlhttp.send();
+		}
+		
 	</script>
 	<h2>Ajax09_0930PM1(XML file)</h2>
-	<button onclick="test1()">Click</button>
+	<button onclick="test2()">Click</button>
 	<hr>
 	<table border="1" width="100%" id="table1">
 		<tr>

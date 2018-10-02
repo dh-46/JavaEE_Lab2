@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax11_0930PM2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var xmlhttp = new XMLHttpRequest();
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+			console.log("debug1");
+		} else {
+			// code for old IE browsers
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log("debug2");
+		}
+		
+		var isOK = false;
+		
+		function checkAccount() {
+			var state = xmlhttp.readyState;
+			var status = xmlhttp.status;
+			
+			
+			var account = document.getElementById('account').value;
+			
+			xmlhttp.open('GET', "ajax12.jsp?account=" + account, true);
+			xmlhttp.onreadystatechange = function() {
+				if (status == 200 && state == 4) {
+					var data = xmlhttp.responseText;
+					var mesg = document.getElementById('mesg');
+					console.log("data: " + data);
+					if (myTrim(data) == '0') {
+						isOK = true;
+						mesg.innerHTML = "OK";
+					} else {
+						mesg.innerHTML = "帳號重複";
+					}
+				}
+			};
+			xmlhttp.send();
+			console.log("Debug: " + isOK);
+			return isOK;
+		}
+		
+		function myTrim(x) {
+		    return x.replace(/^\s+|\s+$/gm,'');
+		}
+		
+		function submitForm(){
+			return isOK;
+		}
+	
+	</script>
+	<h2>Ajax動態檢查帳號是否已使用</h2>
+	<hr>
+	<form action="ajax12.jsp" onsubmit="return submitForm();">
+		<!-- onchange/onblur都可以?	 -->
+		Account: <input type="text" name="account" id="account" onblur="checkAccount()"><span id="mesg"></span><br>
+		Password: <input type="password" name="password" id="password"><br>
+		<input type="submit" value="Register">
+	</form>
+	
+</body>
+</html>
